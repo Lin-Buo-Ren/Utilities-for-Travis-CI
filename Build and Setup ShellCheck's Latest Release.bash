@@ -61,9 +61,12 @@ init(){
 		cabal install ShellCheck
 	fi
 
+	# The parameter notation is displayed to user, not for expanding
+	# shellcheck disable=SC2016
 	printf --\
-		"%s: Done!  Please run \`PATH=\${HOME}/.cabal/bin\` after this program call in .travis.yml\n"\
-		"${RUNTIME_EXECUTABLE_NAME}"
+		"%s: Done!  Please run \"%s\" after this program call in .travis.yml\n"\
+		"${RUNTIME_EXECUTABLE_NAME}"\
+		'PATH=${HOME}/.cabal/bin:${PATH}'
 
 	exit 0
 }; declare -fr init
