@@ -89,12 +89,12 @@ before_script: true
 #- ./prepare-building
 
 ### Put your build scripts here
-script: true
+script:
 - which shellcheck >/dev/null
 - which git-lfs >/dev/null
 
 ### You can remove files that are not useful for caching here
-before_cache: true
+before_cache:
 - rm $HOME/.cabal/logs/build.log
 
 ### Caches non-variating contents to speed up build
