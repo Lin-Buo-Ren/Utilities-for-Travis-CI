@@ -47,7 +47,6 @@ init(){
 		sudo apt-get update -qq
 		sudo apt-get install cabal-install
 	fi
-	cabal update
 
 	# FIXME: Implement a proper update checking here
 	if [ -x "${HOME}/.cabal/bin/shellcheck" ]; then
@@ -58,6 +57,7 @@ init(){
 			"%s: Remove Travis CI cache if you need the newer release.\n"\
 			"${RUNTIME_EXECUTABLE_NAME}"
 	else
+		cabal update
 		cabal install ShellCheck
 	fi
 
