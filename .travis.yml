@@ -88,6 +88,9 @@ install:
 - ./"Install Git LFS in Travis CI Container Environment.bash"
 - PATH="$(printf "${HOME}"/git-lfs-*):${PATH}"
 
+- ./"Setup yamllint in Ubuntu lesser than 16.04.bash"
+- PATH=${HOME}/.local/bin:${PATH}
+
 ### Prepartion before building?
 before_script: true
 #- ./prepare-building
@@ -96,6 +99,7 @@ before_script: true
 script:
 - which shellcheck >/dev/null
 - which git-lfs >/dev/null
+- which yamllint >/dev/null
 - ./"GNU Bash Automatic Checking Program for Git Projects/GNU Bash Automatic Checking Program for Git Projects.bash"
 
 ### You can remove files that are not useful for caching here
@@ -104,6 +108,7 @@ before_cache:
 
 ### Caches non-variating contents to speed up build
 cache:
+  pip: true
   directories:
   - $HOME/.cabal
 
