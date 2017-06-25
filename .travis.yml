@@ -96,6 +96,7 @@ before_script: true
 script:
 - which shellcheck >/dev/null
 - which git-lfs >/dev/null
+- ./"GNU Bash Automatic Checking Program for Git Projects/GNU Bash Automatic Checking Program for Git Projects.bash"
 
 ### You can remove files that are not useful for caching here
 before_cache:
