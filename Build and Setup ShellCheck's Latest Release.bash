@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 #shellcheck disable=SC2034
+# Installs Cabal, then build and install ShellCheck using Cabal
+# To use this package in --without-root mode you need to add cabal-install, realpath and ghc in the APT addon install package list
 
 ## Makes debuggers' life easier - Unofficial Bash Strict Mode
 ## BASHDOC: Shell Builtin Commands - Modifying Shell Behavior - The Set Builtin

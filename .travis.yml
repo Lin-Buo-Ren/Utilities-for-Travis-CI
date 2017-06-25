@@ -49,6 +49,7 @@ addons:
     packages: 
     - realpath # required by script
     - cabal-install
+    - ghc
 
   # Hostname can be customized via hosts addon
   # https://docs.travis-ci.com/user/customizing-the-build/#Custom-Hostnames
