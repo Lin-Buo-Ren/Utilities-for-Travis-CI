@@ -85,6 +85,9 @@ install:
 - ./"Build and Setup ShellCheck's Latest Release.bash" --without-root
 - PATH="${HOME}/.cabal/bin:${PATH}"
 
+- ./"Install Git LFS in Travis CI Container Environment.bash"
+- PATH="$(printf "${HOME}"/git-lfs-*):${PATH}"
+
 ### Prepartion before building?
 before_script: true
 #- ./prepare-building
