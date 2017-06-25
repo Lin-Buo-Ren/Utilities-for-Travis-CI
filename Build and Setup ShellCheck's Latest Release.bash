@@ -48,7 +48,18 @@ init(){
 		sudo apt-get install cabal-install
 	fi
 	cabal update
-	cabal install ShellCheck
+
+	# FIXME: Implement a proper update checking here
+	if [ -x "${HOME}/.cabal/bin/shellcheck" ]; then
+		printf --\
+			"%s: Existing ShellCheck executable found, skipping installation.\n"\
+			"${RUNTIME_EXECUTABLE_NAME}"
+		printf --\
+			"%s: Remove Travis CI cache if you need the newer release.\n"\
+			"${RUNTIME_EXECUTABLE_NAME}"
+	else
+		cabal install ShellCheck
+	fi
 
 	printf --\
 		"%s: Done!  Please run \`PATH=\${HOME}/.cabal/bin\` after this program call in .travis.yml\n"\
