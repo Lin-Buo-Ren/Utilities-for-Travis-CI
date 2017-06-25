@@ -25,6 +25,9 @@ if [ -v "BASH_SOURCE[0]" ]; then
 fi
 declare -ar RUNTIME_COMMANDLINE_PARAMETERS=("${@}")
 
+declare \
+	without_root="N"
+
 ## init function: entrypoint of main program
 ## This function is called near the end of the file,
 ## with the script's command-line parameters as arguments
@@ -38,8 +41,10 @@ init(){
 		exit 1
 	fi
 
-	sudo apt-get update -qq
-	sudo apt-get install cabal-install
+	if [ "${without_root}" == "N" ]; then
+		sudo apt-get update -qq
+		sudo apt-get install cabal-install
+	fi
 	cabal update
 	cabal install ShellCheck
 
@@ -101,6 +106,10 @@ process_commandline_parameters() {
 				"--debug"\
 				|"-d")
 					enable_debug="Y"
+					;;
+				"--without-root"\
+				|"-wr")
+					without_root="Y"
 					;;
 				*)
 					printf "ERROR: Unknown command-line argument \"%s\"\n" "${parameters[0]}" >&2
