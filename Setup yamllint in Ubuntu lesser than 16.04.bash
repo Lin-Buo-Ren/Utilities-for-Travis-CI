@@ -45,6 +45,8 @@ init(){
 			--user\
 			yamllint
 
+	# The parameter notation is displayed to user, not for expanding
+	# shellcheck disable=SC2016
 	printf --\
 	"%s: Done!  Please run \"%s\" after this program call in .travis.yml\n"\
 	"${RUNTIME_EXECUTABLE_NAME}"\
