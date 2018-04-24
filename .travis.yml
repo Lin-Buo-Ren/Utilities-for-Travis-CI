@@ -91,13 +91,16 @@ install:
 - ./"Setup yamllint in Ubuntu lesser than 16.04.bash"
 - PATH=${HOME}/.local/bin:${PATH}
 
+- ./"Setup ShellCheck's Latest Release without Re-building.bash"
+- PATH="${PWD}/shellcheck-stable:${PATH}"
+
 ### Prepartion before building?
 before_script: true
 #- ./prepare-building
 
 ### Put your build scripts here
 script:
-- which shellcheck >/dev/null
+- which -a shellcheck >/dev/null
 - which git-lfs >/dev/null
 - which yamllint >/dev/null
 - ./"GNU Bash Automatic Checking Program for Git Projects/GNU Bash Automatic Checking Program for Git Projects.bash"
@@ -111,6 +114,7 @@ cache:
   pip: true
   directories:
   - $HOME/.cabal
+  - $HOME/Software
 
 ### Commands if build phase fails
 after_failure: true
