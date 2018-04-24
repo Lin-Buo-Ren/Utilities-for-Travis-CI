@@ -50,7 +50,7 @@ cleanup(){
 trap cleanup EXIT
 
 errexit(){
-	printf "%s: ERROR: Failed to download Git Large File Storage.\n" "${RUNTIME_SCRIPT_FILENAME}" 1>&2
+	printf '%s: ERROR: Failed to download Git Large File Storage.\n' "${RUNTIME_SCRIPT_FILENAME}" 1>&2
 }; readonly -f errexit
 trap errexit ERR
 
@@ -70,8 +70,8 @@ init(){
 		--directory="${HOME}"\
 		--file "${HOME}/git-lfs-linux-amd64-${latest_release_tag:1}.tar.gz"
 
-	printf "Git Large File Storage installed successfully, note that you should also run the following command in .travis.yml to add git-lfs to executable search path:\n"
-	printf "\n"
+	printf 'Git Large File Storage installed successfully, note that you should also run the following command in .travis.yml to add git-lfs to executable search path:\n'
+	printf '\n'
 
 	# Disable SC2016, the expansion isn't going to happen here
 	# shellcheck disable=SC2016

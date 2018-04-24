@@ -36,7 +36,7 @@ declare \
 init(){
 	if ! process_commandline_parameters; then
 		printf\
-			"Error: %s: Invalid command-line parameters.\n"\
+			'Error: %s: Invalid command-line parameters.\n'\
 			"${FUNCNAME[0]}"\
 			1>&2
 		print_help
@@ -51,10 +51,10 @@ init(){
 	# FIXME: Implement a proper update checking here
 	if [ -x "${HOME}/.cabal/bin/shellcheck" ]; then
 		printf --\
-			"%s: Existing ShellCheck executable found, skipping installation.\n"\
+			'%s: Existing ShellCheck executable found, skipping installation.\n'\
 			"${RUNTIME_EXECUTABLE_NAME}"
 		printf --\
-			"%s: Remove Travis CI cache if you need the newer release.\n"\
+			'%s: Remove Travis CI cache if you need the newer release.\n'\
 			"${RUNTIME_EXECUTABLE_NAME}"
 	else
 		cabal update
@@ -64,7 +64,7 @@ init(){
 	# The parameter notation is displayed to user, not for expanding
 	# shellcheck disable=SC2016
 	printf --\
-		"%s: Done!  Please run \"%s\" after this program call in .travis.yml\n"\
+		"%s: Done!  Please run \"%s\" after this program call in .travis.yml\\n"\
 		"${RUNTIME_EXECUTABLE_NAME}"\
 		'PATH=${HOME}/.cabal/bin:${PATH}'
 
@@ -74,7 +74,7 @@ init(){
 ## Traps: Functions that are triggered when certain condition occurred
 ## Shell Builtin Commands » Bourne Shell Builtins » trap
 trap_errexit(){
-	printf "An error occurred and the script is prematurely aborted\n" 1>&2
+	printf 'An error occurred and the script is prematurely aborted\n;' 1>&2
 	return 0
 }; declare -fr trap_errexit; trap trap_errexit ERR
 
@@ -85,16 +85,16 @@ trap_exit(){
 trap_return(){
 	local returning_function="${1}"
 
-	printf "DEBUG: %s: returning from %s\n" "${FUNCNAME[0]}" "${returning_function}" 1>&2
+	printf 'DEBUG: %s: returning from %s\n' "${FUNCNAME[0]}" "${returning_function}" 1>&2
 }; declare -fr trap_return
 
 trap_interrupt(){
-	printf "Recieved SIGINT, script is interrupted.\n" 1>&2
+	printf 'Recieved SIGINT, script is interrupted.\n' 1>&2
 	return 0
 }; declare -fr trap_interrupt; trap trap_interrupt INT
 
 print_help(){
-	printf "Currently no help messages are available for this program\n" 1>&2
+	printf 'Currently no help messages are available for this program\n' 1>&2
 	return 0
 }; declare -fr print_help;
 
@@ -128,7 +128,7 @@ process_commandline_parameters() {
 					without_root="Y"
 					;;
 				*)
-					printf "ERROR: Unknown command-line argument \"%s\"\n" "${parameters[0]}" >&2
+					printf "ERROR: Unknown command-line argument \"%s\"\\n" "${parameters[0]}" >&2
 					return 1
 					;;
 			esac
