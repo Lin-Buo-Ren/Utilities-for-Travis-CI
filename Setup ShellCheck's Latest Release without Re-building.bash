@@ -71,7 +71,7 @@ init(){
 		"%s: Shellcheck %s setuped!  Please run \"%s\" after this program call in .travis.yml\\n"\
 		"${RUNTIME_EXECUTABLE_NAME}"\
 		"${scversion}"\
-		"PATH=\"${HOME}/Software/shellcheck-${scversion}:${PATH}\""
+		'PATH="${HOME}/Software/shellcheck-stable:${PATH}"'
 
 	exit 0
 }; declare -fr init
