@@ -3,7 +3,7 @@
 # This downloads and uses shellcheck executable built by upstream
 # https://github.com/koalaman/shellcheck#travis-ci
 # You should add the following command after running this script in the install phase of .travis.yml
-# - PATH="${PWD}/shellcheck-stable:${PATH}"
+# - PATH="${HOME}/Software/shellcheck-stable:${PATH}"
 # You should merge the following config in the cache phase of .travis.yml:
 #   directories:
 #   - $HOME/Software

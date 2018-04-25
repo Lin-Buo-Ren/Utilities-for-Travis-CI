@@ -92,7 +92,7 @@ install:
 - PATH=${HOME}/.local/bin:${PATH}
 
 - ./"Setup ShellCheck's Latest Release without Re-building.bash"
-- PATH="${PWD}/shellcheck-stable:${PATH}"
+- PATH="${HOME}/Software/shellcheck-stable:${PATH}"
 
 ### Prepartion before building?
 before_script: true
