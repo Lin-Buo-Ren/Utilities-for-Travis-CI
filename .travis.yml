@@ -118,8 +118,7 @@ cache:
   directories:
   - $HOME/.cabal
   - $HOME/Software
-  - $HOME/.local/git-lfs
-  - $HOME/.local/yamllint
+  - $HOME/.local
 
 ### Commands if build phase fails
 after_failure: true
