@@ -103,7 +103,9 @@ script:
 - which -a shellcheck
 - shellcheck --version
 - which git-lfs
+- git lfs version
 - which yamllint
+- yamllint --version
 - ./"GNU Bash Automatic Checking Program for Git Projects/GNU Bash Automatic Checking Program for Git Projects.bash"
 
 ### You can remove files that are not useful for caching here
