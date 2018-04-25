@@ -100,9 +100,10 @@ before_script: true
 
 ### Put your build scripts here
 script:
-- which -a shellcheck >/dev/null
-- which git-lfs >/dev/null
-- which yamllint >/dev/null
+- which -a shellcheck
+- shellcheck --version
+- which git-lfs
+- which yamllint
 - ./"GNU Bash Automatic Checking Program for Git Projects/GNU Bash Automatic Checking Program for Git Projects.bash"
 
 ### You can remove files that are not useful for caching here
