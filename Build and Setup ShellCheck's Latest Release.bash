@@ -57,6 +57,13 @@ init(){
 			'%s: Remove Travis CI cache if you need the newer release.\n'\
 			"${RUNTIME_EXECUTABLE_NAME}"
 	else
+		if ! command -v cabal 2>/dev/null; then
+			printf --\
+				'%s: ERROR: `cabal` command is not found in your executable search paths, you must install cabal-install package before running this script as non-superuser.\n'\
+				"${RUNTIME_EXECUTABLE_NAME}"\
+				>&2
+			exit 1
+		fi
 		cabal update
 		cabal install ShellCheck
 	fi
