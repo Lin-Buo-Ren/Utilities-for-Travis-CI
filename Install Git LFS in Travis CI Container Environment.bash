@@ -3,7 +3,7 @@
 # 林博仁 Copyright 2017
 # Run following command after this script in travis.yml:
 #
-# 	PATH="$(printf "${HOME}"/git-lfs-*):${PATH}"
+# 	PATH="${HOME}/.local/bin:${PATH}"
 #
 ## Makes debuggers' life easier - Unofficial Bash Strict Mode
 ## http://redsymbol.net/articles/unofficial-bash-strict-mode/
@@ -60,22 +60,36 @@ init(){
 	latest_release_tag="$(fetch_latest_git_lfs_release_tag)"
 	readonly latest_release_tag
 
+	if test -x "${HOME}/.local/bin/git-lfs"; then
+		printf --\
+			'%s: INFO: The following existing Git LFS installation detected:\n'\
+			"${RUNTIME_SCRIPT_FILENAME}"
+		"${HOME}/.local/bin/git-lfs" version
+		printf --\
+			'%s: INFO: The latest version is %s, clear the Travis CI build cache if you need to update.\n'\
+			"${RUNTIME_SCRIPT_FILENAME}"\
+			"${latest_release_tag:1}"
+		exit 0
+	fi
+
 	wget\
-		--directory-prefix="${HOME}"\
+		--directory-prefix="/tmp"\
 		"https://github.com/git-lfs/git-lfs/releases/download/${latest_release_tag}/git-lfs-linux-amd64-${latest_release_tag:1}.tar.gz"
 
 	tar\
 		--extract\
 		--verbose\
-		--directory="${HOME}"\
-		--file "${HOME}/git-lfs-linux-amd64-${latest_release_tag:1}.tar.gz"
+		--directory="/tmp"\
+		--file "/tmp/git-lfs-linux-amd64-${latest_release_tag:1}.tar.gz"
+
+	env PREFIX="${HOME}/.local" "/tmp/git-lfs-${latest_release_tag:1}/install.sh"
 
 	printf 'Git Large File Storage installed successfully, note that you should also run the following command in .travis.yml to add git-lfs to executable search path:\n'
 	printf '\n'
 
 	# Disable SC2016, the expansion isn't going to happen here
 	# shellcheck disable=SC2016
-	printf '\tPATH="$(printf "${HOME}"/git-lfs-*):${PATH}"\n'
+	printf '\tPATH="${HOME}/.local/bin:${PATH}"\n'
 	exit 0
 }
 readonly -f init

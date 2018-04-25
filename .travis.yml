@@ -86,7 +86,7 @@ install:
 - PATH="${HOME}/.cabal/bin:${PATH}"
 
 - ./"Install Git LFS in Travis CI Container Environment.bash"
-- PATH="$(printf "${HOME}"/git-lfs-*):${PATH}"
+- PATH="${HOME}/.local/bin:${PATH}"
 
 - ./"Setup yamllint in Ubuntu lesser than 16.04.bash"
 - PATH=${HOME}/.local/bin:${PATH}
@@ -118,6 +118,7 @@ cache:
   directories:
   - $HOME/.cabal
   - $HOME/Software
+  - $HOME/.local
 
 ### Commands if build phase fails
 after_failure: true
