@@ -89,7 +89,7 @@ install:
 - PATH="${HOME}/.local/bin:${PATH}"
 
 - ./"Setup yamllint in Ubuntu lesser than 16.04.bash"
-- PATH=${HOME}/.local/bin:${PATH}
+- PATH="${HOME}/.local/bin:${PATH}"
 
 - ./"Setup ShellCheck's Latest Release without Re-building.bash"
 - PATH="${HOME}/Software/shellcheck-stable:${PATH}"
