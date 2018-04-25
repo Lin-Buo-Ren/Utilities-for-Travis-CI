@@ -58,6 +58,8 @@ init(){
 			"${RUNTIME_EXECUTABLE_NAME}"
 	else
 		if ! command -v cabal 2>/dev/null; then
+			# The backticks are escaped intended.
+			# shellcheck disable=SC2016
 			printf --\
 				'%s: ERROR: `cabal` command is not found in your executable search paths, you must install cabal-install package before running this script as non-superuser.\n'\
 				"${RUNTIME_EXECUTABLE_NAME}"\
